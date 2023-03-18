@@ -1,0 +1,30 @@
+import random
+
+def generate_task():
+    # Функция для генерации задания
+    # Возвращает текст задания и правильный ответ
+    x = random.randint(1, 10)
+    y = random.randint(1, 10)
+    text = f"Решите уравнение: {x}x + {y} = 0"
+    answer = -y / x
+    return text, answer
+
+def check_answer(user_answer, correct_answer):
+    # Функция для проверки ответа
+    # Возвращает True, если ответ верный, и False в противном случае
+    return abs(user_answer - correct_answer) < 0.001
+
+def solve_math_task():
+    # Функция для решения задания
+    text, answer = generate_task()
+    alice_speech = f"Решите задание: {text}"
+    user_answer = float(input(alice_speech))
+    if check_answer(user_answer, answer):
+        alice_speech = "Верно! Молодец!"
+    else:
+        alice_speech = f"Неверно. Правильный ответ: {answer}"
+    return alice_speech
+
+# Пример использования
+alice_speech = solve_math_task()
+print(alice_speech)
